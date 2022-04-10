@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title> Loops & Iterators </title> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../Assets/stylesPages.css"> 
+    <script src="../../Assets/scriptPages.js"></script>
+</head>
+<body>
+<h1> Loops & Iterators (ver 4.0.0) </h1>
+    <p> Updated ( 2022-03-22 )</p>
+    <p class="sitenav"> <a href="../../index.html">MySite></a>
+        <a href="../index.html">Python></a> Loops & Iterators
+    </p>
+<table class="table">
+<caption>
+    <span class="changeListOrder">[Ordered: <span>Alphabetically</span>]</span>
+</caption>
+    <tr>
+        <th style="width:30%;"> Method / Attribute </th>
+        <th> Description </th>
+    </tr>
+    <tr class="05.01">
+        <td> 
+            <strong>obj</strong>.__iter__
+        </td>
+        <td> 
+            - the object is iterable if it has this attribute 
+        </td>
+    </tr>
+    <tr class="10.02">
+        <td> 
+            <strong>genObj|iterObj</strong>.__next__()
+        </td>
+        <td> 
+            - returns the next member of <strong>genObj|iterObj</strong> (raises a <mark>StopIteration</mark> error if the <strong>genObj|iterObj</strong> is overcalled)
+                <span id="browserSupport" title="Updated: 2022-03-23">
+                    <span><i class="fab fa-python"></i> 3.x </span>
+                </span>
+        </td>
+    </tr>
+    <tr class="10.01">
+        <td> 
+            iter(<strong>iterable</strong>)
+        </td>
+        <td> 
+            - creates and returns an iterator (<strong>iterObj</strong>) object 
+        </td>
+    </tr>
+    <tr class="10.03">
+        <td> 
+            next(<strong>genObj|iterObj</strong>, <i>def:any</i>)
+        </td>
+        <td> 
+            - returns the next member of <strong>genObj|iterObj</strong> <br>
+            - if overcalled returns the default value (<i>def</i>) or raises a <mark>StopIteration</mark> error if the the default value is not specified   
+                <span id="browserSupport" title="Updated: 2022-03-23">
+                    <span><i class="fab fa-python"></i> 2.6 </span>
+                </span>
+        </td>
+    </tr>
+    <tr class="15.01">
+        <td> 
+            range(<i>stIdx(inc):int</i>, <strong>endIdx(exc):int</strong>, <i>steps:int</i>)
+        </td>
+        <td> 
+            - creates and returns a sequence between the specified index range (used in <mark>for</mark> loops to control cycles) 
+        </td>
+    </tr>
+</table>
+    <br>
+    <details class="example" id="notes">
+    <summary> Notes :</summary>
+        <!-- <p> - paragraph removes the 'empty' message from the detail TAG -->
+    </details>
+<h2 style="color:green;"><u> Useful Links : </u></h2>
+    <p><a href="https://docs.python.org/3/tutorial/classes.html#iterators" target="_blanc">Iterators (docs.python)</a></p>
+<h2 style="color:green;"><u> Remember This : </u></h2>
+    
+<h2 style="color:green;"><u> Description and Demonstration : </u></h2>
+<h2 class="header"><u> The <mark>while</mark> / <mark>for in</mark> loop and <mark>continue</mark> / <mark>break</mark> keywords</u> </u></h2>
+    <pre class="syntax">
+<span style="color:darkgray;">// while loop -------------------------------------------------------------------------</span>
+    while <strong>cond</strong>:                                                                        // while the condition is true runs a loop cycle and check the condition again 
+        <strong>codeBlock</strong>                                                
+    <small>else:</small>                                                                              // once the loop is over runs this code block (does not run if the loop was stopped by <mark>break</mark>)    
+        <i>codeBlock</i>
+    
+    
+<span style="color:darkgray;">// for in loop ------------------------------------------------------------------------</span>
+    for <strong>item</strong> in <strong>iterable</strong>                                                               // runs a cycle for each item in the iterable  
+        <strong>item</strong>                                                                           // current item 
+    <small>else:</small>                                                                              // once the loop is over runs this code block (does not run if the loop was stopped by <mark>break</mark>)    
+        <i>codeBlock</i>
+    
+    
+<span style="color:darkgray;">// <mark>continue</mark> / <mark>break</mark> -------------------------------------------------------------------</span>
+    <strong>loop</strong>
+        continue                                                                       // skips this loop cycle and jupst into the next one (the remaining code block is skipped)
+        break                                                                          // ends the loop completetly  
+    </pre>
+<details class="example">
+<summary> DEMO </summary>
+    <pre>
+// while loop -------------------------------------------------------------------------
+    x = 5
+    
+    while x > 0:
+        x                                                                              // -> 5  |  4  |  3  |  2  |  1
+        x -= 1
+    else:
+        print( 'end of loop')                                                          // code block executed at the end of the while loop    
+    
+    
+// for in loop ------------------------------------------------------------------------
+    list = [1, 2, 3]
+    
+    for i in list:
+        i                                                                              // -> 1  |  2  |  3 
+    else:
+        print( 'end of loop')                                                          // code block executed at the end of the while loop    
+    
+    
+// continue / break -------------------------------------------------------------------
+    x = 5
+    
+    while True:
+        x -= 1
+        
+        if x == 2 or x == 4:
+            continue                                                                   // skips the cyle (the remaining clode block)  
+        
+        x                                                                              // -> 3  |  1  |  0  
+        
+        if x &lt;= 0:
+            break                                                                      // breaks the loop 
+    </pre>
+</details>
+<!---------------------------------------------------------------------------------------------->
+<hr>
+<h2 class="header"><u> Iterator type </u></h2>
+    <p> - internally loops call the <mark>iter()</mark> method on the iterable object which returns an iterator object, then they call the <mark>next()</mark> method on the iterator object until the <mark>StopIteration</mark> error is raise to stop the iteration </p>
+    <p> - armed with this knowledge we can implement our own iterator type with the <mark>__iter__()</mark> and <mark>__next__()</mark> methods </p>
+    <pre class="syntax">
+    class <strong>classId</strong>:
+        def __init__(self):
+            <strong>codeBlock</strong>
+            
+        def __iter__(self):                                                            // logic to setup the iterator type  
+            <strong>codeBlock</strong>
+            
+        def __next__(self):                                                            // logic to call for each iteration 
+            raise StopIteration                                                        // we raise the <mark>StopIteration</mark> error when we want the end the cycles  
+    </pre>
+<details class="example">
+<summary> DEMO </summary>
+    <pre>
+    class MyIterator:
+        def __init__(self, data):
+            self.data = data
+            self.index = 0
+            self.end = len(data)
+        
+        def __iter__(self):
+            return self
+        
+        def __next__(self):
+            if self.index >= self.end:
+                raise StopIteration
+            item = self.data[self.index]
+            self.index += 1
+            return item
+    
+    
+    iteratorInstance = MyIterator('abc')                                               // the custom iterator type   
+    
+// get iterator's items ---------------------------------------------------------------
+    for i in iteratorInstance:
+        i                                                                              // -> 'a'  |  'b'  |  'c'  
+    
+    iteratorObj = iter(iteratorInstance)
+    
+    next(iteratorObj)                                                                  // -> 'a'
+    next(iteratorObj)                                                                  // -> 'b'
+    next(iteratorObj)                                                                  // -> 'c'
+    next(iteratorObj)                                                                  // -! raises the StopIteration error (iterator object overcalled)   
+    </pre>
+</details>
+<!---------------------------------------------------------------------------------------------->
+<hr>
+<h2 class="header"> The Generator (function) </h2>
+    <p> - the generator function gives us a nice concise way to create our on generator object (which is an iterator basically) </p>
+    <pre class="syntax">
+    def genFunc():                                                                     // function having the <mark>yield</mark> keyword becomes a generator function 
+        yield <strong>exp</strong>                                                                      // calling the <mark>next()</mark> method on the <strong>genObj</strong> object will return the value after the <mark>yield</mark> keyword <u>then pauses the execution of the generator function body until the <mark>next()</mark> is called again</u>    
+        <i>...</i>                                                                            // the last <mark>yield</mark> value is the last item in the generation (no the <mark>return</mark> value)
+        
+        return <strong>val</strong>                                                                     // the <mark>return</mark> value is raised as <mark>StopIteration</mark> error value if the <strong>genObj</strong> is overcalled 
+    
+    
+    <strong>genObj</strong> = genFunc()                                                                 // the generator function creates and return a generator object on which we can call the <mark>__next__()</mark> or <mark>next()</mark> to get the next member    
+    </pre>
+<details class="example">
+<summary> DEMO </summary>
+    <pre>
+    def genFn():
+        yield 'one'
+        yield 'two'
+        return 'three'                                                                 // the return value is not part of the generated values   
+    
+    genObj = genFn()                                                                   // returns a generator object    
+    
+// looping through the generator object -----------------------------------------------
+    for i in genObj:
+        i                                                                              // -> 'one'  |  'two'
+    
+// .next() ----------------------------------------------------------------------------
+    genObj.__next__()                                                                  // -> 'one'
+    genObj.__next__()                                                                  // -> 'two'
+    genObj.__next__()                                                                  // -! raises <mark>StopIteration: three</mark> error (the generator function return value is the error value here)    
+    
+// next() -----------------------------------------------------------------------------
+    next(genObj, 'defVal')                                                             // -> 'one'
+    next(genObj, 'defVal')                                                             // -> 'two'
+    next(genObj, 'defVal')                                                             // -> 'defVal'     // return the default value instead of raising the StopIteration error   
+    </pre>
+</details>
+<!---------------------------------------------------------------------------------------------->
+<hr>
+<h2 class="header"> The <mark>__iter__</mark> / <mark>iter()</mark> / <mark>__next__()</mark> / <mark>next()</mark> / <mark>range()</mark> attribute and methods </h2>
+<details class="example">
+<summary> DEMO </summary>
+    <pre>
+// __iter__ ---------------------------------------------------------------------------
+    str = 'someString'
+    someFloat = 2.2
+    
+    hasattr(str, '__iter__')                                                           // -> True             // iterable 
+    hasattr(someFloat, '__iter__' )                                                    // -> False            // not iterable 
+    
+    
+// iter() / __next__() / next() -------------------------------------------------------
+    def genFn():
+        yield 'one'
+        yield 'two'
+    
+    genObj = genFn()
+    iterObj = iter([1, 2])                                                             // creates and returns an iterator 
+    
+    genObj.__next__()                                                                  // -> 'one'        // returns the next member in the iterator 
+    next(genObj)                                                                       // -> 'two'        // returns the next member in the iterator 
+    genObj.__next__()                                                                  // -! raises a StopIteration error (becaus of orvercall)   
+    
+    iterObj.__next__()                                                                 // -> 1            // on generator object does the same 
+    next(iterObj, 'defVal')                                                            // -> 2
+    next(iterObj, 'defVal')                                                            // -> 'defVal'     // retuns the default value (because of overcall)
+    next(iterObj, 'defVal')                                                            // -> 'defVal'
+    
+    
+// range() ----------------------------------------------------------------------------
+    for i range(3):                                                                    // creates and returns a range with 3 members      // this is the same as <mark>range(0, 3, 1)</mark> (starts with <mark>0</mark> index)   
+        i                                                                              // -> 0  |  1  |  2
+    
+    for i in range(2, 11, 2):
+        i                                                                              // -> 2  |  4  |  6  |  8    
+    
+    for i in range(0, 21, 7):
+        i                                                                              // -> 0  |  7  |  14
+    </pre>
+</details>
+    
+    
+    <br><br>
+</body>
+</html>
