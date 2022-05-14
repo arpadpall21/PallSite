@@ -1,15 +1,21 @@
-from contextlib import contextmanager
+import asyncio
 
-@contextmanager
-def ctxmanager():
-    print('setup---------')
-    yield "Hello World!"
-    print('teardown------')
-    return True
+def someFn():
+    return 'function result'
 
-with ctxmanager() as alias:
-    print('ctx manger context ->')
-    print( alias )
-    raise Exception('my exception')
+# async def delay(delay, error=False):
+#     await asyncio.sleep(delay)
+#     print( f'Delayed {delay} seconds')
+    
+#     if error:
+#         raise Exception('some errror')
+    
+#     return f'OK delay {delay}'
 
-print( '---------------------------after with')
+def main():
+    
+
+async def main():
+
+
+asyncio.run(main())

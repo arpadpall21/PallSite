@@ -1,8 +1,4 @@
-const myObj = {}
+const myArr1 = [1, 2, 3]
+const myArr2 = [1, 2, 3]
 
-with (myObj) {
-    x = 'x'
-    y = 'y'
-}
-
-console.log( myObj )
+console.log( false && laksdjfdsalkjaksdjflakdjsf )
